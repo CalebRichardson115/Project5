@@ -28,7 +28,17 @@ public class ExoticAnimalAdapter extends Pet {
 	}
 	
 	@Override
+	public void setID(int id) {
+		this.id = id;
+	}
+	
+	@Override
 	public int getId() {
 		return this.id;
+	}
+	
+	@Override
+	public Boolean getAdopted() {
+		return this.adopted;
 	}
 }
