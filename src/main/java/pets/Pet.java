@@ -8,15 +8,17 @@ public abstract class Pet {
 	protected String species;
 	protected int age;
 	protected Boolean adopted;
-	/*
-	public Pet(int id, String name, String type, String species, int age, Boolean adopted) {
-		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.species = species;
-		this.age = age;
-		this.adopted = false;
-	}
-	*/
 	
+	public String toString() {
+		if(adopted == true) return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Adopted";
+		/*else */return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Not Adopted";
+	}
+	
+	public void setAdopted(Boolean adopted) {
+		this.adopted = adopted;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
 }

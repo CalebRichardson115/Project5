@@ -19,4 +19,6 @@ public class Shelter<T extends Pet> {
 	public List<T> getList(){
 		return list;
 	}
+	
+	
 }
