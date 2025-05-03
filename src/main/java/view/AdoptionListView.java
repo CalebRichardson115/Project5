@@ -1,5 +1,7 @@
 package view;
 
+import java.util.*;
+
 import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -13,6 +15,15 @@ public class AdoptionListView extends JFrame {
 	private JList list;
 	private JPanel panel;
 	
+	private JButton removePetButton;
+	private JButton addPetButton;
+	private JButton viewDetailsButton;
+	private JButton adoptPetButton;
+	private JButton saveButton;
+	
+	private DefaultListModel<Pet> modelList;
+	
+	
 	public AdoptionListView() {
 		setTitle("Animal Shelter Adoption Center");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -22,11 +33,40 @@ public class AdoptionListView extends JFrame {
 		setContentPane(panel);
 		getContentPane().setLayout(null);
 		
-		DefaultListModel<Pet> modelList = new DefaultListModel<Pet>(); 
+		modelList = new DefaultListModel<Pet>(); 
 		list = new JList<Pet>(modelList);
 	
 		list.setBounds(68, 85, 390, 174);
 		panel.add(list);
 		
+		adoptPetButton = new JButton("Adopt Selected Animal");
+		adoptPetButton.setBounds(66, 285, 177, 23);
+		panel.add(adoptPetButton);
+		
+		viewDetailsButton = new JButton("View Animal Details");
+		viewDetailsButton.setBounds(250, 285, 177, 23);
+		panel.add(viewDetailsButton);
+		
+		addPetButton = new JButton("Add a Pet");
+		addPetButton.setBounds(66, 315, 177, 23);
+		panel.add(addPetButton);
+		
+		removePetButton = new JButton("Remove a Pet");
+		removePetButton.setBounds(250, 315, 177, 23);
+		panel.add(removePetButton);
+		
+		saveButton = new JButton("Save");
+		saveButton.setBounds(158, 345, 177, 23);
+		panel.add(saveButton);
 	}
+	public void setModelList(List<Pet> shelter) {
+		modelList.clear();
+		for(Pet pet : shelter) {
+			modelList.addElement(pet);
+		}
+	}
+	public DefaultListModel<Pet> getUserList() {
+		return (DefaultListModel<Pet>) list.getModel();
+	}
+	
 }
