@@ -65,8 +65,27 @@ public class AdoptionListView extends JFrame {
 			modelList.addElement(pet);
 		}
 	}
-	public DefaultListModel<Pet> getUserList() {
+	
+	public void addActionListenerToRemovePetButton(ActionListener listener) {
+		removePetButton.addActionListener(listener);
+	}
+	
+	public void addActionListenerToAdoptPetButton(ActionListener listener) {
+		adoptPetButton.addActionListener(listener);
+	}
+	
+	public DefaultListModel<Pet> getPetList() {
 		return (DefaultListModel<Pet>) list.getModel();
 	}
+	
+	public int getSelectedPetIndex() {
+		System.out.println("Selected pet index: " + list.getSelectedIndex());
+		return list.getSelectedIndex();
+	}
+	
+	public Pet getSelectedPet() {
+		return (Pet) list.getSelectedValue();
+	}
+	
 	
 }

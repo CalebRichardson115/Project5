@@ -18,7 +18,12 @@ public class ExoticAnimalAdapter extends Pet {
 	}
 	@Override
 	public String toString() {
-		if(this.adopted == true) return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Adopted";
+		return "Name: "+ this.name + " Type: " + this.type;
+	}
+	
+	@Override
+	public String getDetails() {
+		if(adopted == true) return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Adopted";
 		else return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Not Adopted";
 	}
 	

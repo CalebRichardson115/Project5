@@ -10,8 +10,12 @@ public abstract class Pet {
 	protected Boolean adopted;
 	
 	public String toString() {
+		return "Name: "+ this.name + " Type: " + this.type;
+	}
+	
+	public String getDetails() {
 		if(adopted == true) return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Adopted";
-		/*else */return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Not Adopted";
+		else return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Not Adopted";
 	}
 	
 	public int getId() {
