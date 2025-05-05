@@ -1,6 +1,7 @@
 package pets;
 //Pet has to be an abstract class according to specifications.
-public abstract class Pet {
+//Implements Comparable so that the list view can sort by names.
+public abstract class Pet implements Comparable<Pet>{
 	//Protected so that only subclasses have access to fields.
 	protected int id;
 	protected String name;
@@ -8,7 +9,7 @@ public abstract class Pet {
 	protected String species;
 	protected int age;
 	protected Boolean adopted;
-	//Standard toString method is simplified so not all details are given in the lsit view.
+	//Standard toString method is simplified so not all details are given in the list view.
 	public String toString() {
 		return "Name: "+ this.name + " Type: " + this.type;
 	}
@@ -63,5 +64,10 @@ public abstract class Pet {
 	
 	public void setAdopted(Boolean adopted) {
 		this.adopted = adopted;
+	}
+	//Makes it so that the list view automatically gets sorted by age when the sortAge button is pressed.
+	@Override
+	public int compareTo(Pet pet) {
+		return this.getName().compareTo(pet.getName());
 	}
 }

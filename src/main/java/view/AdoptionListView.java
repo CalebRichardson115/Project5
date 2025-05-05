@@ -21,6 +21,8 @@ public class AdoptionListView extends JFrame {
 	private JButton adoptPetButton;
 	private JButton saveButton;
 	
+	private JButton ageSortButton;
+	
 	private DefaultListModel<Pet> modelList;
 	
 	
@@ -59,6 +61,10 @@ public class AdoptionListView extends JFrame {
 		saveButton = new JButton("Save");
 		saveButton.setBounds(158, 330, 177, 23);
 		panel.add(saveButton);
+		
+		ageSortButton = new JButton("Sort by Name");
+		ageSortButton.setBounds(68,30,177,23);
+		panel.add(ageSortButton);
 	}
 	//Sets the list using a shelter.
 	public void setModelList(List<Pet> shelter) {
@@ -86,6 +92,10 @@ public class AdoptionListView extends JFrame {
 	
 	public void addActionListenerToSaveButton(ActionListener listener) {
 		saveButton.addActionListener(listener);
+	}
+	
+	public void addActionListenerToNameSortButton(ActionListener listener) {
+		ageSortButton.addActionListener(listener);
 	}
 	//Retrieves the JList.
 	public DefaultListModel<Pet> getPetList() {

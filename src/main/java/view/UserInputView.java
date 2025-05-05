@@ -29,6 +29,7 @@ public class UserInputView extends JFrame {
 	
 	
 	public UserInputView() {
+		//Initializing panel and page.
 		setTitle("Add a New Pet Page");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100,100,500,400);
@@ -38,6 +39,7 @@ public class UserInputView extends JFrame {
 		getContentPane().setLayout(null);
 		
 		
+		//Initializing and formatting text fields and buttons. 
 		
 		idTextField = new JTextField();
 		idTextField.setBounds(150, 20, 250, 20);

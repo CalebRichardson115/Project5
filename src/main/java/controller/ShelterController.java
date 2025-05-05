@@ -3,12 +3,15 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import view.*;
 import pets.*;
+import parsing.ConvertDefaultListToPetList;
 import parsing.JsonCreater;
 
 
@@ -30,6 +33,9 @@ public class ShelterController {
 		petListView.addActionListenerToSaveButton(new SaveButtonActionListener());
 		inputView.addActionListenerToCancelButton(new CancelButtonActionListener());
 		inputView.addActionListenerToSubmitButton(new SubmitButtonActionListener());
+		
+		petListView.addActionListenerToNameSortButton(new NameSortButtonActionListener());
+		//petListView.addActionListenerToAgeSortButton(new AgeSortButtonActionListener());
 	}
 	//List view is the default view.
 	public void initiate() {
@@ -127,6 +133,16 @@ public class ShelterController {
 			JOptionPane.showMessageDialog(inputView, "Pet has been added", "", 1, null);
 			inputView.setVisible(false);
 			petListView.setVisible(true);
+		}
+	}
+	//Copies the list to a list of pets that is sorted by name and then copies that pet list.
+	private class NameSortButtonActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			List<Pet> petList = new ArrayList<>();
+			petList = ConvertDefaultListToPetList.ConvertDefaultListModelToPetList(petListView.getPetList());
+			Collections.sort(petList);
+			petListView.setModelList(petList);
 		}
 	}
 }
