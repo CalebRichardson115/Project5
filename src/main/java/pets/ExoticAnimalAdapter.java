@@ -2,7 +2,7 @@ package pets;
 
 public class ExoticAnimalAdapter extends Pet {
 	private ExoticAnimal animal = null;
-	
+	//Adapts an exotic animal into a Pet.
 	public ExoticAnimalAdapter (String id, String name,String type, String species, int age, boolean adopted){
 		this.animal = new ExoticAnimal(id, name, type, species, age);
 		this.name = animal.name;

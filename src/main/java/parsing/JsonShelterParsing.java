@@ -36,7 +36,7 @@ public class JsonShelterParsing {
 
 		Type exoticTypeList = new TypeToken<List<ExoticDTO>>() {}.getType();
 		List<ExoticDTO> exoticPetData = gson.fromJson(allExotic, exoticTypeList);
-		//System.out.println(exoticPet);
+		//Takes petInfo from the exotic json file and makes new exotic animal adapters for each to be inserted into the shelter.
 		for(ExoticDTO petInfo : exoticPetData) {
 			ExoticAnimalAdapter newExotic = new ExoticAnimalAdapter(petInfo.uniqueId, petInfo.animalName, petInfo.category, petInfo.subSpecies, petInfo.yearsOld, false);
 			shelter.getList().add((Pet) newExotic);

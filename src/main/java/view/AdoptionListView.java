@@ -33,7 +33,7 @@ public class AdoptionListView extends JFrame {
 		panel = new JPanel();
 		setContentPane(panel);
 		getContentPane().setLayout(null);
-		
+		//Initalizes the list.
 		modelList = new DefaultListModel<Pet>(); 
 		list = new JList<Pet>(modelList);
 	
@@ -67,7 +67,7 @@ public class AdoptionListView extends JFrame {
 			modelList.addElement(pet);
 		}
 	}
-	//Functiosn that add action listener to buttons in list view.
+	//Methods that add action listener to buttons in list view.
 	public void addActionListenerToRemovePetButton(ActionListener listener) {
 		removePetButton.addActionListener(listener);
 	}
@@ -93,7 +93,6 @@ public class AdoptionListView extends JFrame {
 	}
 	//Returns the selected index of the JList.
 	public int getSelectedPetIndex() {
-		System.out.println("Selected pet index: " + list.getSelectedIndex());
 		return list.getSelectedIndex();
 	}
 	//Returns a selected Pet from the JList.

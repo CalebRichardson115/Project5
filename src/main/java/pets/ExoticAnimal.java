@@ -14,7 +14,7 @@ public class ExoticAnimal {
 		this.species = species;
 		this.age = age;
 	}
-	
+	//Getters for exotic animals.
 	public String getId() {
 		return this.id;
 	}

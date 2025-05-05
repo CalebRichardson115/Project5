@@ -9,7 +9,7 @@ public class Shelter<T extends Pet> {
 	public Shelter() {
 		list = new ArrayList<>();
 	}
-	
+	//Prints the values of the shelter. Named each element "animal" for readability. 
 	public void printValues() {
 		for(T animal : list) {
 			System.out.println(animal.toString());

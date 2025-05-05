@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import view.*;
 import pets.*;
 import parsing.JsonCreater;
@@ -15,7 +17,7 @@ public class ShelterController {
 	private AdoptionListView petListView;
 	private UserInputView inputView;
 	private Shelter<Pet> shelter;
-	
+	//Controller is passed a shelter to add to its list view and initiates all buttons.
 	public ShelterController(Shelter<Pet> shelter) {
 		petListView = new AdoptionListView();
 		inputView = new UserInputView();
@@ -27,12 +29,13 @@ public class ShelterController {
 		petListView.addActionListenerToAddPetButton(new AddPetButtonActionListener());
 		petListView.addActionListenerToSaveButton(new SaveButtonActionListener());
 		inputView.addActionListenerToCancelButton(new CancelButtonActionListener());
+		inputView.addActionListenerToSubmitButton(new SubmitButtonActionListener());
 	}
-	
+	//List view is the default view.
 	public void initiate() {
 		petListView.setVisible(true);
 	}
-	
+	//Removes a selected pet. Does nothing if no selection is made.
 	private class RemovePetButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -42,31 +45,34 @@ public class ShelterController {
 		}
 		
 	}
-	//Sets 
+	//Sets the selected pet to be adopted. Gives an error if there is no selection or if the pet is already adopted. 
 	private class AdoptPetButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int adoptIndex = petListView.getSelectedPetIndex();
 			if(adoptIndex == -1) {
+				JOptionPane.showMessageDialog(inputView, "Select a Pet to Adopt", "Invalid input", 1, null);
 				return;
 			}
 			if(petListView.getPetList().get(adoptIndex).getAdopted() == true) {
-				System.out.println("Pet is already adopted.");
+				JOptionPane.showMessageDialog(inputView, "Pet is already adopted", "Invalid input", 1, null);
 			}
 			else {
 				petListView.getPetList().get(adoptIndex).setAdopted(true);
+				JOptionPane.showMessageDialog(inputView, "Pet Adopted", "", 1, null);
 			}
 		}
 	}
-	//Prints the details of a selected pet.
+	//Prints the details of a selected pet unless no pet is selected.
 	private class ViewDetailsButtonActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Pet printPet = petListView.getSelectedPet();
 			if(printPet == null) {
+				JOptionPane.showMessageDialog(inputView, "Select a Pet to View Details", "Invalid input", 1, null);
 				return;
 			}
-			System.out.println(printPet.getDetails());
+			JOptionPane.showMessageDialog(inputView, printPet.getDetails(), "Pet Details", 1, null);
 		}
 	}
 	//Initiates the input view.
@@ -90,6 +96,37 @@ public class ShelterController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JsonCreater.createJson(petListView.getPetList());
+		}
+	}
+	
+	private class SubmitButtonActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//Checks to see if age and integer are valid numbers.
+			if(!inputView.getId().matches("\\d+") || !inputView.getAge().matches("\\d+")) {
+				JOptionPane.showMessageDialog(inputView, "ID and Age must be valid numbers.", "Invalid input", 1, null);
+				return;
+			}
+			//Checks to see if the other fields are blank.
+			if(inputView.getName().isBlank() || inputView.getPetType().isBlank() || inputView.getSpecies().isBlank()) {
+				JOptionPane.showMessageDialog(inputView, "Fill in all fields.", "Invalid input", 1, null);
+				return;
+			}
+			int id = Integer.parseInt(inputView.getId());
+			int age = Integer.parseInt(inputView.getAge());
+			//Checks to see if id is present in the list.
+			for(int i = 0; i < petListView.getPetList().size(); i++) {
+				if(petListView.getPetList().get(i).getId() == id) {
+					JOptionPane.showMessageDialog(inputView, "ID already exists.", "Invalid input", 1, null);
+					return;
+				}
+			}
+			//Assuming that any new pet is not adopted.
+			Pet newPet = new NormalPet(id, inputView.getName(), inputView.getPetType(), inputView.getSpecies(), age, false);
+			petListView.getPetList().addElement(newPet);
+			JOptionPane.showMessageDialog(inputView, "Pet has been added", "", 1, null);
+			inputView.setVisible(false);
+			petListView.setVisible(true);
 		}
 	}
 }
