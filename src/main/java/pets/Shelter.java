@@ -2,7 +2,7 @@ package pets;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Stores a generic list.
 public class Shelter<T extends Pet> {
 	private List<T> list;
 	

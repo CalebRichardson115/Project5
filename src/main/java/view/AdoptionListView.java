@@ -25,6 +25,7 @@ public class AdoptionListView extends JFrame {
 	
 	
 	public AdoptionListView() {
+		//Sets up the GUI view.
 		setTitle("Animal Shelter Adoption Center");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(300, 100, 500, 400);
@@ -38,34 +39,35 @@ public class AdoptionListView extends JFrame {
 	
 		list.setBounds(68, 85, 390, 174);
 		panel.add(list);
-		
+		//Initializes the buttons for list view.
 		adoptPetButton = new JButton("Adopt Selected Animal");
-		adoptPetButton.setBounds(66, 285, 177, 23);
+		adoptPetButton.setBounds(66, 270, 177, 23);
 		panel.add(adoptPetButton);
 		
 		viewDetailsButton = new JButton("View Animal Details");
-		viewDetailsButton.setBounds(250, 285, 177, 23);
+		viewDetailsButton.setBounds(250, 270, 177, 23);
 		panel.add(viewDetailsButton);
 		
 		addPetButton = new JButton("Add a Pet");
-		addPetButton.setBounds(66, 315, 177, 23);
+		addPetButton.setBounds(66, 300, 177, 23);
 		panel.add(addPetButton);
 		
 		removePetButton = new JButton("Remove a Pet");
-		removePetButton.setBounds(250, 315, 177, 23);
+		removePetButton.setBounds(250, 300, 177, 23);
 		panel.add(removePetButton);
 		
 		saveButton = new JButton("Save");
-		saveButton.setBounds(158, 345, 177, 23);
+		saveButton.setBounds(158, 330, 177, 23);
 		panel.add(saveButton);
 	}
+	//Sets the list using a shelter.
 	public void setModelList(List<Pet> shelter) {
 		modelList.clear();
 		for(Pet pet : shelter) {
 			modelList.addElement(pet);
 		}
 	}
-	
+	//Functiosn that add action listener to buttons in list view.
 	public void addActionListenerToRemovePetButton(ActionListener listener) {
 		removePetButton.addActionListener(listener);
 	}
@@ -74,15 +76,27 @@ public class AdoptionListView extends JFrame {
 		adoptPetButton.addActionListener(listener);
 	}
 	
+	public void addActionListenerToViewDetailsButton(ActionListener listener) {
+		viewDetailsButton.addActionListener(listener);
+	}
+	
+	public void addActionListenerToAddPetButton(ActionListener listener) {
+		addPetButton.addActionListener(listener);
+	}
+	
+	public void addActionListenerToSaveButton(ActionListener listener) {
+		saveButton.addActionListener(listener);
+	}
+	//Retrieves the JList.
 	public DefaultListModel<Pet> getPetList() {
 		return (DefaultListModel<Pet>) list.getModel();
 	}
-	
+	//Returns the selected index of the JList.
 	public int getSelectedPetIndex() {
 		System.out.println("Selected pet index: " + list.getSelectedIndex());
 		return list.getSelectedIndex();
 	}
-	
+	//Returns a selected Pet from the JList.
 	public Pet getSelectedPet() {
 		return (Pet) list.getSelectedValue();
 	}

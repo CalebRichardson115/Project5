@@ -1,5 +1,5 @@
 package pets;
-
+//Exotic Animal has fields from the exotic animal json that need to be adapted to be in a list of pets.
 public class ExoticAnimal {
 	String id;
 	String name;

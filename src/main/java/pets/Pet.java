@@ -8,16 +8,16 @@ public abstract class Pet {
 	protected String species;
 	protected int age;
 	protected Boolean adopted;
-	
+	//Standard toString method is simplified so not all details are given in the lsit view.
 	public String toString() {
 		return "Name: "+ this.name + " Type: " + this.type;
 	}
-	
+	//Returns all information regarding a pet.
 	public String getDetails() {
 		if(adopted == true) return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Adopted";
 		else return "Id: " + id + " Name: " + name + " Type: " + type + " Species: " + species + " Age: " + age + " Adoption Status: Not Adopted";
 	}
-	
+	//Getter and setters for Pets.
 	public int getId() {
 		return this.id;
 	}
